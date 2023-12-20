@@ -11,7 +11,7 @@ public struct Account: Identifiable {
     /// Account ID from Mastodon => it is unique
     public let id: UInt
     
-    /// User acc info
+    /// General account info
     public var username: String
     public var acct: String
     public var displayName: String
@@ -25,13 +25,13 @@ public struct Account: Identifiable {
     public let url: String
     public let uri: String
     
-    /// profile pictures
+    /// account profile pictures
     public var avatarImageURL: String
     public var avatarStaticURL: String
     public var headerImageURL: String
     public var headerImageStatic: String
     
-    /// meta data (followers, posts)
+    /// account meta data (followers, posts)
     public var followersCount: Int
     public var followingCount: Int
     public var statusesAccount: Int
