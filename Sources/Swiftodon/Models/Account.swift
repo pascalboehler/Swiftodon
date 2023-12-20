@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Account {
+public struct Account {
     let id: UInt
     var username: String
     var acct: String
