@@ -6,3 +6,34 @@ DerivedData/
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
+
+# macOS
+
+.DS_Store
+profile
+
+# Xcode
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+xcuserdata
+
+# Swift Package Manager
+
+/Packages
+/.build
+
+# AppCode
+
+.idea/*
+
+# VSC
+
+.vscode/*
+
+# Bundler
+
+.bundle
