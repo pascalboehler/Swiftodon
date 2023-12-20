@@ -7,33 +7,33 @@
 
 import Foundation
 
-struct Post: Identifiable {
-    let id: UInt
-    var visibility: Visibility
-    var postURL: String
-    var postURI: String
-    var repliesCount: Int
-    var reblogsCount: Int
-    var favouritesCount: Int
-    var editedAt: String?
-    var content: String
-    var isReblog: Bool
-    var application: Application
-    var account: Account
-    var mediaAttechmentsURLs: [String]
-    var mentions: [String]
-    var tags: [Any]
-    var emojies: [Any]
-    var card: String?
-    var poll: String?
+public struct Post: Identifiable {
+    public let id: UInt
+    public var visibility: Visibility
+    public var postURL: String
+    public var postURI: String
+    public var repliesCount: Int
+    public var reblogsCount: Int
+    public var favouritesCount: Int
+    public var editedAt: String?
+    public var content: String
+    public var isReblog: Bool
+    public var application: Application
+    public var account: Account
+    public var mediaAttechmentsURLs: [String]
+    public var mentions: [String]
+    public var tags: [Any]
+    public var emojies: [Any]
+    public var card: String?
+    public var poll: String?
 }
 
-struct Application {
-    var name: String
-    var website: String
+public struct Application {
+    public var name: String
+    public var website: String
 }
 
-enum Visibility {
+public enum Visibility {
     case isPublic
     case community
     case isPrivate

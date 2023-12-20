@@ -8,27 +8,27 @@
 import Foundation
 
 public struct Account {
-    let id: UInt
-    var username: String
-    var acct: String
-    var displayName: String
-    let locked: Bool
-    let bot: Bool
-    let discoverable: Bool
-    let group: Bool
-    var note: String
-    let url: String
-    let uri: String
-    var avatarImageURL: String
-    var avatarStaticURL: String
-    var headerImageURL: String
-    var headerImageStatic: String
-    var followersCount: Int
-    var followingCount: Int
-    var statusesAccount: Int
-    var lastStatusAt: String
-    let noIndex: Bool
-    var emojis: [Any]
-    var roles: [Any]
-    var fields: [Any]
+    public let id: UInt
+    public var username: String
+    public var acct: String
+    public var displayName: String
+    public let locked: Bool
+    public let bot: Bool
+    public let discoverable: Bool
+    public let group: Bool
+    public var note: String
+    public let url: String
+    public let uri: String
+    public var avatarImageURL: String
+    public var avatarStaticURL: String
+    public var headerImageURL: String
+    public var headerImageStatic: String
+    public var followersCount: Int
+    public var followingCount: Int
+    public var statusesAccount: Int
+    public var lastStatusAt: String
+    public let noIndex: Bool
+    public var emojis: [Any]
+    public var roles: [Any]
+    public var fields: [Any]
 }
