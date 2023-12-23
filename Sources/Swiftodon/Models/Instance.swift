@@ -20,6 +20,4 @@ class Instance {
     func authenticateDevice() -> Bool {
         return false
     }
-    
-    
 }
