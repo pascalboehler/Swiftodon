@@ -22,6 +22,8 @@ public struct Account: Identifiable {
     public let discoverable: Bool
     public let group: Bool
     public var note: String
+    
+    /// URL and URI to Account
     public let url: String
     public let uri: String
     
@@ -29,14 +31,16 @@ public struct Account: Identifiable {
     public var avatarImageURL: String
     public var avatarStaticURL: String
     public var headerImageURL: String
-    public var headerImageStatic: String
+    public var headerStaticURL: String
     
     /// account meta data (followers, posts)
     public var followersCount: Int
     public var followingCount: Int
-    public var statusesAccount: Int
+    public var statusesCount: Int
     public var lastStatusAt: String
     public let noIndex: Bool
+    
+    /// additional fields
     public var emojis: [Any]
     public var roles: [Any]
     public var fields: [Any]
