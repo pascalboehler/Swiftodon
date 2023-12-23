@@ -43,7 +43,7 @@ extension Account: Decodable {
     public init(from: Decoder) throws {
         let values = try from.container(keyedBy: AccountJSONKeys.self)
         
-        let rawId = try? values.decode(UInt.self, forKey: .id)
+        let rawId = try? values.decode(String.self, forKey: .id)
         
         let rawUsername = try? values.decode(String.self, forKey: .username)
         let rawAcct = try? values.decode(String.self, forKey: .acct)

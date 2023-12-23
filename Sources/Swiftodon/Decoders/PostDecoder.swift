@@ -5,7 +5,7 @@
 //  Created by Pingu on 23.12.23.
 //
 
-extension Post {
+extension Post: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -27,14 +27,14 @@ extension Post {
         case isReplog = "reblog"
         case mediaAttachmentsURLs = "media_attachments"
         case tags = "tags"
-        case emojies = "emojies"
+        case emojies = "emojis"
         case card = "card"
         case poll = "poll"
     }
     
     public init(from: Decoder) throws {
         let values = try from.container(keyedBy: CodingKeys.self)
-        let rawID = try? values.decode(UInt.self, forKey: .id)
+        let rawID = try? values.decode(String.self, forKey: .id)
         let rawPostURL = try? values.decode(String.self, forKey: .postURL)
         let rawPostURI = try? values.decode(String.self, forKey: .postURI)
         let rawVisibility = (try? values.decode(String.self, forKey: .visibility)) ?? "public"
@@ -55,7 +55,7 @@ extension Post {
         let rawPoll = try? values.decode(String.self, forKey: .poll)
 
         guard let id = rawID else {
-            throw DecodingError.dataCorruptedError(forKey: .id, in: values, debugDescription: "ID is not a valid UInt")
+            throw DecodingError.dataCorruptedError(forKey: .id, in: values, debugDescription: "ID is not a valid String")
         }
         
         guard let postURL = rawPostURL else {
@@ -86,9 +86,9 @@ extension Post {
             throw DecodingError.dataCorruptedError(forKey: .createdAt, in: values, debugDescription: "createdAt is not a valid String")
         }
 
-        guard let editedAt = rawEditedAt else {
+        /*guard let editedAt = rawEditedAt else {
             throw DecodingError.dataCorruptedError(forKey: .editedAt, in: values, debugDescription: "editedAt is not a valid String")
-        }
+        }*/
 
         guard let application = rawApplication else {
             throw DecodingError.dataCorruptedError(forKey: .application, in: values, debugDescription: "application is not a valid Application")
@@ -106,9 +106,9 @@ extension Post {
             throw DecodingError.dataCorruptedError(forKey: .content, in: values, debugDescription: "content is not a valid String")
         }
 
-        guard let isReblog = rawIsReblog else {
+        /*guard let isReblog = rawIsReblog else {
             throw DecodingError.dataCorruptedError(forKey: .isReplog, in: values, debugDescription: "isReblog is not a valid Bool")
-        }
+        }*/
 
         guard let mediaAttachmentsURLs = rawMediaAttachmentsURLs else {
             throw DecodingError.dataCorruptedError(forKey: .mediaAttachmentsURLs, in: values, debugDescription: "mediaAttachmentsURLs is not a valid [String]")
@@ -122,13 +122,13 @@ extension Post {
             throw DecodingError.dataCorruptedError(forKey: .emojies, in: values, debugDescription: "emojies is not a valid [Any]")
         }
 
-        guard let card = rawCard else {
+        /*guard let card = rawCard else {
             throw DecodingError.dataCorruptedError(forKey: .card, in: values, debugDescription: "card is not a valid String")
         }
 
         guard let poll = rawPoll else {
             throw DecodingError.dataCorruptedError(forKey: .poll, in: values, debugDescription: "poll is not a valid String")
-        }
+        }*/
 
         self.id = id
         self.postURL = postURL
@@ -138,16 +138,16 @@ extension Post {
         self.reblogsCount = reblogsCount
         self.favouritesCount = favouritesCount
         self.createdAt = createdAt
-        self.editedAt = editedAt
+        self.editedAt = rawEditedAt
         self.application = application
         self.account = account
         self.mentions = mentions
         self.content = content
-        self.isReblog = isReblog
+        self.isReblog = rawIsReblog
         self.mediaAttachmentsURLs = mediaAttachmentsURLs
         self.tags = tags
         self.emojies = emojies
-        self.card = card
-        self.poll = poll
+        self.card = rawCard
+        self.poll = rawPoll
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 public struct Post: Identifiable {
     /// Unique post ID supplied by Mastodon
-    public let id: UInt?
+    public let id: String
     
     /// Post URLs
     public var postURL: String
@@ -28,9 +28,9 @@ public struct Post: Identifiable {
     
     /// Content of the post including attachments
     public var content: String
-    public var isReblog: Bool
+    public var isReblog: Bool?
     public var mediaAttachmentsURLs: [String]
-    public var tags: [Any]
+    public var tags: [String]
     public var emojies: [Any]
     public var card: String?
     public var poll: String?

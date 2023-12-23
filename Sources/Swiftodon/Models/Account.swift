@@ -9,7 +9,7 @@ import Foundation
 
 public struct Account: Identifiable {
     /// Account ID from Mastodon => it is unique
-    public let id: UInt
+    public let id: String
     
     /// General account info
     public var username: String
