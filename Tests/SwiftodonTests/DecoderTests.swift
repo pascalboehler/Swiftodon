@@ -60,7 +60,7 @@ final class DecoderTests: XCTestCase {
     }
     
     func testPostDecoding() throws {
-        var testJSONString =
+        let testJSONString =
         """
         [
             {
