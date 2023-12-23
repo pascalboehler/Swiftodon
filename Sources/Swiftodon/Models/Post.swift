@@ -35,22 +35,3 @@ public struct Post: Identifiable {
     public var card: String?
     public var poll: String?
 }
-
-public struct Application {
-    /// Name of the instance
-    public var name: String
-    
-    /// URL to the instance
-    public var website: String
-}
-
-public enum Visibility: String, Codable {
-    /// Post is public to all instances
-    case `public` = "public"
-    
-    /// Post is public for the instance the user is on
-    case community = "community"
-    
-    /// Post is only visible to own followers
-    case `private` = "private"
-}
