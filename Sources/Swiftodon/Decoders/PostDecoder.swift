@@ -1,3 +1,10 @@
+//
+//  PostDecoder.swift
+//
+//
+//  Created by Pingu on 23.12.23.
+//
+
 extension Post {
     
     private enum CodingKeys: String, CodingKey {
@@ -14,7 +21,7 @@ extension Post {
         case editedAt = "edited_at"
         case application = "application"
         case account = "account"
-        case metions = "mentions"
+        case mentions = "mentions"
         /// contents
         case content = "content"
         case isReplog = "reblog"
@@ -27,35 +34,35 @@ extension Post {
     
     public init(from: Decoder) throws {
         let values = try from.container(keyedBy: CodingKeys.self)
-        let rawID = try values.decode(UInt.self, forKey: .id)
-        let rawPostURL = try values.decode(String.self, forKey: .postURL)
-        let rawPostURI = try values.decode(String.self, forKey: .postURI)
-        let rawVisibility = try values.decode(String.self, forKey: .visibility)
-        let rawRepliesCount = try values.decode(Int.self, forKey: .repliesCount)
-        let rawReblogsCount = try values.decode(Int.self, forKey: .reblogsCount)
-        let rawFavouritesCount = try values.decode(Int.self, forKey: .favouritesCount)
-        let rawCreatedAt = try values.decode(String.self, forKey: .createdAt)
-        let rawEditedAt = try values.decode(String.self, forKey: .editedAt)
-        let rawApplication = try values.decode(Application.self, forKey: .application)
-        let rawAccount = try values.decode(Account.self, forKey: .account)
-        let rawMentions = try values.decode([String].self, forKey: .mentions)
-        let rawContent = try values.decode(String.self, forKey: .content)
-        let rawIsReblog = try values.decode(Bool.self, forKey: .isReplog)
-        let rawMediaAttachmentsURLs = try values.decode([String].self, forKey: .mediaAttachmentsURLs)
-        let rawTags = try values.decode([Any].self, forKey: .tags)
-        let rawEmojies = try values.decode([Any].self, forKey: .emojies)
-        let rawCard = try values.decode(String.self, forKey: .card)
-        let rawPoll = try values.decode(String.self, forKey: .poll)
+        let rawID = try? values.decode(UInt.self, forKey: .id)
+        let rawPostURL = try? values.decode(String.self, forKey: .postURL)
+        let rawPostURI = try? values.decode(String.self, forKey: .postURI)
+        let rawVisibility = (try? values.decode(String.self, forKey: .visibility)) ?? "public"
+        let rawRepliesCount = try? values.decode(Int.self, forKey: .repliesCount)
+        let rawReblogsCount = try? values.decode(Int.self, forKey: .reblogsCount)
+        let rawFavouritesCount = try? values.decode(Int.self, forKey: .favouritesCount)
+        let rawCreatedAt = try? values.decode(String.self, forKey: .createdAt)
+        let rawEditedAt = try? values.decode(String.self, forKey: .editedAt)
+        let rawApplication = try? values.decode(Application.self, forKey: .application)
+        let rawAccount = try? values.decode(Account.self, forKey: .account)
+        let rawMentions = try? values.decode([String].self, forKey: .mentions)
+        let rawContent = try? values.decode(String.self, forKey: .content)
+        let rawIsReblog = try? values.decode(Bool.self, forKey: .isReplog)
+        let rawMediaAttachmentsURLs = try? values.decode([String].self, forKey: .mediaAttachmentsURLs)
+        let rawTags = try? values.decode([String].self, forKey: .tags)
+        let rawEmojies = try? values.decode([String].self, forKey: .emojies)
+        let rawCard = try? values.decode(String.self, forKey: .card)
+        let rawPoll = try? values.decode(String.self, forKey: .poll)
 
         guard let id = rawID else {
             throw DecodingError.dataCorruptedError(forKey: .id, in: values, debugDescription: "ID is not a valid UInt")
         }
         
-        guard let postURL = URL(string: rawPostURL) else {
+        guard let postURL = rawPostURL else {
             throw DecodingError.dataCorruptedError(forKey: .postURL, in: values, debugDescription: "postURL is not a valid URL")
         }
 
-        guard let postURI = URL(string: rawPostURI) else {
+        guard let postURI = rawPostURI else {
             throw DecodingError.dataCorruptedError(forKey: .postURI, in: values, debugDescription: "postURI is not a valid URL")
         }
 
