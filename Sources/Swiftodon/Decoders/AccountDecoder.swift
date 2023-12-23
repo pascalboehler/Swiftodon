@@ -171,7 +171,5 @@ extension Account: Decodable {
             throw DecodingError.dataCorruptedError(forKey: .fields, in: values, debugDescription: "Not found")
         }
         self.fields = fields
-        
-        
     }
 }
