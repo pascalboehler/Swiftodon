@@ -78,7 +78,7 @@ final class DecoderTests: XCTestCase {
                 "reblogs_count": 0,
                 "favourites_count": 0,
                 "edited_at": null,
-                "content": "",
+                "content": "<p>Riscos de compartilhar fotos e v\\u00eddeos de crian\\u00e7as nas redes sociais</p><p><a href=\\"https://www.brownpipe.com.br/riscos-de-compartilhar-fotos-e-videos-de-criancas-nas-redes-sociais/\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\" translate=\\"no\\"><span class=\\"invisible\\">https://www.</span><span class=\\"ellipsis\\">brownpipe.com.br/riscos-de-com</span><span class=\\"invisible\\">partilhar-fotos-e-videos-de-criancas-nas-redes-sociais/</span></a></p>",
                 "reblog": null,
                 "application": {
                     "name": "Elk",
@@ -88,13 +88,13 @@ final class DecoderTests: XCTestCase {
                     "id": "108198211110269347",
                     "username": "segurancalegal",
                     "acct": "segurancalegal",
-                    "display_name": "Podcast Seguran Legal",
+                    "display_name": "Podcast Seguran\\u00e7a Legal",
                     "locked": false,
                     "bot": false,
                     "discoverable": false,
                     "group": false,
                     "created_at": "2022-04-26T00:00:00.000Z",
-                    "note": "",
+                    "note": "<p>Podcast Seguran\\u00e7a Legal - Direito da TI e SegInfo - Apoio BrownPipe Consultoria - Apoie e participe em  <a href=\\"http://apoia.se/segurancalegal\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\" translate=\\"no\\"><span class=\\"invisible\\">http://</span><span class=\\"\\">apoia.se/segurancalegal</span><span class=\\"invisible\\"></span></a> e <a href=\\"http://picpay.me/segurancalegal\\" target=\\"_blank\\" rel=\\"nofollow noopener noreferrer\\" translate=\\"no\\"><span class=\\"invisible\\">http://</span><span class=\\"\\">picpay.me/segurancalegal</span><span class=\\"invisible\\"></span></a></p>",
                     "url": "https://mastodon.social/@segurancalegal",
                     "uri": "https://mastodon.social/users/segurancalegal",
                     "avatar": "https://files.mastodon.social/accounts/avatars/108/198/211/110/269/347/original/c234e03f7ce3d5fe.png",
@@ -118,7 +118,6 @@ final class DecoderTests: XCTestCase {
                 "poll": null
             }
         ]
-
         """.data(using: .utf8)!
         
         let decoder = JSONDecoder()
