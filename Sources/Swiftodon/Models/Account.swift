@@ -43,5 +43,5 @@ public struct Account: Identifiable {
     /// additional fields
     public var emojis: [Any]
     public var roles: [Any]
-    public var fields: [Any]
+    public var fields: [Field]
 }

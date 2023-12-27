@@ -3,5 +3,5 @@ public struct Application {
     public var name: String
     
     /// URL to the instance
-    public var website: String
+    public var website: String?
 }

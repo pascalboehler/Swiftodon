@@ -22,15 +22,16 @@ public struct Post: Identifiable {
     public var favouritesCount: Int
     public var createdAt: String
     public var editedAt: String?
-    public var application: Application
+    public var application: Application?
     public var account: Account
     public var mentions: [String]
+    public var language: String?
     
     /// Content of the post including attachments
     public var content: String
     public var isReblog: Bool?
     public var mediaAttachmentsURLs: [String]
-    public var tags: [String]
+    public var tags: [Tag]
     public var emojies: [Any]
     public var card: String?
     public var poll: String?
