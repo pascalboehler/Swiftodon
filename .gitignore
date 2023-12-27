@@ -25,6 +25,7 @@ xcuserdata
 
 /Packages
 /.build
+*.resolved
 
 # AppCode
 
