@@ -6,21 +6,18 @@
 //
 
 import Foundation
+import Alamofire
 
 extension Instance {
-    public func fetchAllPublicPosts() -> [Post]? {
+    @available(iOS 13.0.0, *)
+    @available(macOS 10.15, *)
+    public func fetchAllPublicPosts() async throws -> [Post]? {
         
-        let callURL = URL(string: "https://\(instanceURL)/api/v1/timelines/public?limit=10")
+        let rawCallURL = "https://\(instanceURL)/api/v1/timelines/public?limit=1"
+       
+        let response = await AF.request(rawCallURL).serializingDecodable([Post].self).response
+        let value = response.value
         
-        guard let callURL = callURL else {
-            return nil
-        }
-        
-        var request = URLRequest(url: callURL)
-        request.httpMethod = "GET"
-        
-        
-        
-        return nil
+        return value
     }
 }

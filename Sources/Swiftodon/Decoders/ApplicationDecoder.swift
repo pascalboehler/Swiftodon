@@ -24,9 +24,6 @@ extension Application: Decodable {
             throw DecodingError.dataCorruptedError(forKey: .name, in: values, debugDescription: "Not found")
         }
         self.name = name
-        guard let website = rawWebsite else {
-            throw DecodingError.dataCorruptedError(forKey: .website, in: values, debugDescription: "Not found")
-        }
-        self.website = website
+        self.website = rawWebsite
     }
 }

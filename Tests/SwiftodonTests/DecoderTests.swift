@@ -25,6 +25,20 @@ final class DecoderTests: XCTestCase {
         XCTAssertEqual(emoji.shortcode, "blobaww")
     }
     
+    func testMentionDecoding() throws {
+        let testJSON =
+        """
+        {
+            "id": "12345",
+            "username": "Hans",
+            "url": "https://mastodon.example",
+            "acct": "Hans@mastodon.example"
+        }
+        """.data(using: .utf8)!
+        let mention = try JSONDecoder().decode(Mention.self, from: testJSON)
+        XCTAssertEqual(mention.id, "12345")
+    }
+    
     func testFieldDecoding() throws {
         let testJSON =
         """

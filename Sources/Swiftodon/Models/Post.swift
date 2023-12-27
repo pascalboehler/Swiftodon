@@ -17,22 +17,34 @@ public struct Post: Identifiable {
     
     /// post metadata
     public var visibility: Visibility
+    public var sensitive: Bool
+    
+    /// counts
     public var repliesCount: Int
     public var reblogsCount: Int
     public var favouritesCount: Int
+    
     public var createdAt: String
     public var editedAt: String?
     public var application: Application?
     public var account: Account
-    public var mentions: [String]
+    public var mentions: [Mention]
     public var language: String?
     
     /// Content of the post including attachments
     public var content: String
-    public var isReblog: Bool?
+    public var spoilerText: String
+    public var reblog: String?
     public var mediaAttachmentsURLs: [String]
+        
+    /// Replies
+    public var inReplyToStatusID: String?
+    public var inReplyToAccountID: String?
+    
+    
+    /// Additional data
     public var tags: [Tag]
-    public var emojies: [Any]
+    public var emojis: [Emoji]
     public var card: String?
     public var poll: String?
 }

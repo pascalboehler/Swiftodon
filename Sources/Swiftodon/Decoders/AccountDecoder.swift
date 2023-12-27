@@ -71,7 +71,7 @@ extension Account: Decodable {
         
         let rawEmojis = try? values.decode([String].self, forKey: .emojis)
         let rawRoles = try? values.decode([String].self, forKey: .roles)
-        let rawFields = try? values.decode([String].self, forKey: .fields)
+        let rawFields = try? values.decode([Field].self, forKey: .fields)
         
         guard let id = rawId else {
             throw DecodingError.dataCorruptedError(forKey: .id, in: values, debugDescription: "Not found")
