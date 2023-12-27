@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Emoji {
-    var shortcode: String
-    var url: String
-    var staticURL: String
-    var visibleInPicker: Bool
-    var category: String
+public struct Emoji {
+    public var shortcode: String
+    public var url: String
+    public var staticURL: String
+    public var visibleInPicker: Bool
+    public var category: String
 }

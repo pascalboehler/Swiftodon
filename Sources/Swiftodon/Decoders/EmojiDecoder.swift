@@ -17,7 +17,7 @@ extension Emoji: Decodable {
         case category = "category"
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: EmojiJSONKeys.self)
         self.shortcode = try values.decode(String.self, forKey: .shortcode)
         self.url = try values.decode(String.self, forKey: .url)
