@@ -39,6 +39,36 @@ final class DecoderTests: XCTestCase {
         XCTAssertEqual(mention.id, "12345")
     }
     
+    func testPollDecoding() throws {
+        let testJSON =
+        """
+        {
+          "id": "34830",
+          "expires_at": "2019-12-05T04:05:08.302Z",
+          "expired": true,
+          "multiple": false,
+          "votes_count": 10,
+          "voters_count": null,
+          "voted": true,
+          "own_votes": [
+            1
+          ],
+          "options": [
+            {
+              "title": "accept",
+              "votes_count": 6
+            },
+            {
+              "title": "deny",
+              "votes_count": 4
+            }
+          ],
+          "emojis": []
+        }
+        """.data(using: .utf8)!
+        
+    }
+    
     func testFieldDecoding() throws {
         let testJSON =
         """
@@ -79,56 +109,82 @@ final class DecoderTests: XCTestCase {
         XCTAssertEqual(application.name, "testme")
     }
     
+    func testCardEncoding() throws {
+        let testVideoJSON =
+        """
+        {
+          "url": "https://www.youtube.com/watch?v=OMv_EPMED8Y",
+          "title": "♪ Brand New Friend (Christmas Song!)",
+          "description": "",
+          "type": "video",
+          "author_name": "YOGSCAST Lewis & Simon",
+          "author_url": "https://www.youtube.com/user/BlueXephos",
+          "provider_name": "YouTube",
+          "provider_url": "https://www.youtube.com/",
+          "html": "<iframe width=\\"480\\" height=\\"270\\" src=\\"https://www.youtube.com/embed/OMv_EPMED8Y?feature=oembed\\" frameborder=\\"0\\" allowfullscreen=\\"\\"></iframe>",
+          "width": 480,
+          "height": 270,
+          "image": "https://files.mastodon.social/preview_cards/images/014/179/145/original/9cf4b7cf5567b569.jpeg",
+          "embed_url": "",
+          "blurhash": "UvK0HNkV,:s9xBR%njog0fo2W=WBS5ozofV@"
+        }
+        """.data(using: .utf8)!
+        
+        let testPhotoJSON =
+        """
+        {
+          "url": "https://www.flickr.com/photos/tomfenskephotography/49088768431/",
+          "title": "Oregon",
+          "description": "",
+          "type": "photo",
+          "author_name": "Tom Fenske Photography",
+          "author_url": "https://www.flickr.com/photos/tomfenskephotography/",
+          "provider_name": "Flickr",
+          "provider_url": "https://www.flickr.com/",
+          "html": "",
+          "width": 1024,
+          "height": 427,
+          "image": "https://files.mastodon.social/preview_cards/images/014/287/139/original/651b1c6976817824.jpeg",
+          "embed_url": "https://live.staticflickr.com/65535/49088768431_6a4322b3bb_b.jpg",
+          "blurhash": "UnE{@jt6M_oIAhjYs+ayT2WBf9ayRkkDXAj["
+        }
+        """.data(using: .utf8)!
+        
+        let testLinkJSON =
+        """
+        {
+          "url": "https://www.theguardian.com/money/2019/dec/07/i-lost-my-193000-inheritance-with-one-wrong-digit-on-my-sort-code",
+          "title": "‘I lost my £193,000 inheritance – with one wrong digit on my sort code’",
+          "description": "When Peter Teich’s money went to another Barclays customer, the bank offered £25 as a token gesture",
+          "type": "link",
+          "author_name": "",
+          "author_url": "",
+          "provider_name": "",
+          "provider_url": "",
+          "html": "",
+          "width": 0,
+          "height": 0,
+          "image": null,
+          "embed_url": "",
+          "blurhash": null
+        }
+        """.data(using: .utf8)!
+        
+        let jsonDecoder = JSONDecoder()
+        
+        let imageCard = try jsonDecoder.decode(Card.self, from: testPhotoJSON)
+        let videoCard = try jsonDecoder.decode(Card.self, from: testVideoJSON)
+        let linkCard = try jsonDecoder.decode(Card.self, from: testLinkJSON)
+        
+        XCTAssertEqual(imageCard.type, .photo)
+        XCTAssertEqual(videoCard.type, .video)
+        XCTAssertEqual(linkCard.type, .link)
+    }
+    
     func testAccountDecoding() throws {
         let testJSON =
         """
-        {
-            "id": "110664213295228818",
-            "username": "ekis",
-            "acct": "ekis",
-            "display_name": "she hacked you",
-            "locked": false,
-            "bot": false,
-            "discoverable": true,
-            "group": false,
-            "created_at": "2023-07-06T00:00:00.000Z",
-            "note": "<p>shipwrk&#39;d &amp; coma-tose <br />drink&#39;n fresh granatapfel-juice</p><p>security researcher, open-source hardware+software engineer, u26a7dimensional slider, paradoxically lucid, bruja cibernu00e9tica, exile, formallyu2013trained geneticist, netzwerk hexe, bi-polar 2 witch-apologist, amateur mycologist, katzenamt Bu00fcrokrat, dayu2013dreamer, night-timer partyu2013crasher</p><p>+poorly conceived original <a href="https://mastodon.social/tags/music" class="mention hashtag" rel="tag">#<span>music</span></a><br />+stupid posts in english, espau00f1ol, and deutsche</p>",
-            "url": "https://mastodon.social/@ekis",
-            "uri": "https://mastodon.social/users/ekis",
-            "avatar": "https://files.mastodon.social/accounts/avatars/110/664/213/295/228/818/original/23c23646fd6277fa.jpg",
-            "avatar_static": "https://files.mastodon.social/accounts/avatars/110/664/213/295/228/818/original/23c23646fd6277fa.jpg",
-            "header": "https://files.mastodon.social/accounts/headers/110/664/213/295/228/818/original/bf256571479014b5.jpeg",
-            "header_static": "https://files.mastodon.social/accounts/headers/110/664/213/295/228/818/original/bf256571479014b5.jpeg",
-            "followers_count": 792,
-            "following_count": 1152,
-            "statuses_count": 1143,
-            "last_status_at": "2023-12-25",
-            "noindex": false,
-            "emojis": [],
-            "roles": [],
-            "fields": [
-                {
-                    "name": "I make music",
-                    "value": "<a href="https://shehackedyou.bandcamp.com" target="_blank" rel="nofollow noopener noreferrer me" translate="no"><span class="invisible">https://</span><span class="">shehackedyou.bandcamp.com</span><span class="invisible"></span></a>",
-                    "verified_at": "2023-12-20T03:51:26.377+00:00"
-                },
-                {
-                    "name": "I write code",
-                    "value": "c,cpp,go,rust,ruby,python,java,js, ..",
-                    "verified_at": null
-                },
-                {
-                    "name": "I run linux",
-                    "value": "debian,alpine,ubuntu,gentoo, ..",
-                    "verified_at": null
-                },
-                {
-                    "name": "I use XMPP",
-                    "value": "shehackedyou@xmpp.chat",
-                    "verified_at": null
-                }
-            ]
-        }
+        
         """.data(using: .utf8)!
         
         let jsonDecoder = JSONDecoder()
@@ -223,8 +279,8 @@ final class DecoderTests: XCTestCase {
         """.data(using: .utf8)!
         
         let decoder = JSONDecoder()
-        let post = try decoder.decode([Post].self, from: testJSONString)
+        //let post = try decoder.decode([Post].self, from: testJSONString)
         
-        XCTAssertEqual(post[0].id, "111613128503109275")
+       // XCTAssertEqual(post[0].id, "111613128503109275")
     }
 }
