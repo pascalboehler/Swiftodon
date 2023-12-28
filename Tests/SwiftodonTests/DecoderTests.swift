@@ -371,8 +371,8 @@ final class DecoderTests: XCTestCase {
         """.data(using: .utf8)!
         
         let decoder = JSONDecoder()
-        //let post = try decoder.decode([Post].self, from: testJSONString)
+        let post = try decoder.decode([Post].self, from: testJSONString)
         
-       // XCTAssertEqual(post[0].id, "111613128503109275")
+       XCTAssertEqual(post[0].id, "103270115826048975")
     }
 }
