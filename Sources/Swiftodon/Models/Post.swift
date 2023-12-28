@@ -35,7 +35,7 @@ public struct Post: Identifiable {
     
     /// Content of the post including attachments
     public var content: String /// html
-    public var text: String
+    public var text: String?
     public var spoilerText: String
     public var reblog: String?
     public var mediaAttachments: [MediaAttachment]
