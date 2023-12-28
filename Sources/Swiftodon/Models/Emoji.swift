@@ -12,5 +12,5 @@ public struct Emoji {
     public var url: String
     public var staticURL: String
     public var visibleInPicker: Bool
-    public var category: String
+    public var category: String?
 }

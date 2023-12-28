@@ -23,6 +23,6 @@ extension Emoji: Decodable {
         self.url = try values.decode(String.self, forKey: .url)
         self.staticURL = try values.decode(String.self, forKey: .staticURL)
         self.visibleInPicker = try values.decode(Bool.self, forKey: .visibleInPicker)
-        self.category = try values.decode(String.self, forKey: .category)
+        self.category = try? values.decode(String.self, forKey: .category)
     }
 }
