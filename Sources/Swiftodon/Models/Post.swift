@@ -12,7 +12,7 @@ public struct Post: Identifiable {
     public let id: String
     
     /// Post URLs
-    public var postURL: String
+    public var postURL: String?
     public var postURI: String
     
     /// post metadata
@@ -46,5 +46,5 @@ public struct Post: Identifiable {
     public var tags: [Tag]
     public var emojis: [Emoji]
     public var card: String?
-    public var poll: String?
+    public var poll: Poll?
 }
