@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CardType: String {
+public enum CardType: String, Decodable {
     /// Link OEmbed
     case link = "link"
     

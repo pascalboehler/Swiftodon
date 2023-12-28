@@ -11,11 +11,13 @@ public struct Card {
     /// general
     public var url: String
     public var title: String
+    public var description: String
     
     /// Card type presented to user
     public var type: CardType
     
     /// author and provider
+    public var authorName: String
     public var authorURL : String
     public var providerName: String
     public var providerURL: String
@@ -32,5 +34,5 @@ public struct Card {
     public var embedURL: String /// for photo embeds
     
     /// BlurHash: Can be used to generate colourful previews
-    public var blurhash: String
+    public var blurhash: String?
 }
