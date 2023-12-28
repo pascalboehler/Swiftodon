@@ -181,6 +181,38 @@ final class DecoderTests: XCTestCase {
         XCTAssertEqual(linkCard.type, .link)
     }
     
+    func testMediaAttachmentDecoding() throws {
+        let testAudioJSON =
+        """
+        {
+          "id": "21165404",
+          "type": "audio",
+          "url": "https://files.mastodon.social/media_attachments/files/021/165/404/original/a31a4a46cd713cd2.mp3",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/021/165/404/small/a31a4a46cd713cd2.mp3",
+          "remote_url": null,
+          "text_url": "https://mastodon.social/media/5O4uILClVqBWx0NNgvo",
+          "meta": {
+            "length": "0:06:42.86",
+            "duration": 402.86,
+            "audio_encode": "mp3",
+            "audio_bitrate": "44100 Hz",
+            "audio_channels": "stereo",
+            "original": {
+              "duration": 402.860408,
+              "bitrate": 166290
+            }
+          },
+          "description": null,
+          "blurhash": null
+        }
+        """.data(using: .utf8)!
+        
+        let audioMedia = try JSONDecoder().decode(MediaAttachment.self, from: testAudioJSON)
+        
+        XCTAssertEqual(audioMedia.type, .audio)
+        XCTAssertNotNil(audioMedia.meta)
+    }
+    
     func testAccountDecoding() throws {
         let testJSON =
         """
