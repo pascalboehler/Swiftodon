@@ -8,7 +8,7 @@
 import Foundation
 
 extension Post {
-    var sampleData: [Post] {
+    public var sampleData: [Post] {
         let testJSONString =
         """
         [
