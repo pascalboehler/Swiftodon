@@ -86,8 +86,18 @@ extension Post: Decodable {
         self.inReplyToStatusID = try? values.decode(String.self, forKey: .inReplyToStatusId)
         self.inReplyToAccountID = try? values.decode(String.self, forKey: .inReplyToAccountId)
         
-        self.favourited = try? values.decode(Bool.self, forKey: .favourited)
-        self.reblogged = try? values.decode(Bool.self, forKey: .reblogged)
+        // optional unwrapping; set all defaults to false
+        if let favourited = try? values.decode(Bool.self, forKey: .favourited) {
+            self.favourited = favourited
+        } else {
+            self.favourited = false
+        }
+        
+        if let reblogged = try? values.decode(Bool.self, forKey: .reblogged) {
+            self.reblogged = reblogged
+        } else {
+            self.reblogged = false
+        }
         self.muted = try? values.decode(Bool.self, forKey: .muted)
         self.bookmarked = try? values.decode(Bool.self, forKey: .bookmarked)
         self.pinned = try? values.decode(Bool.self, forKey: .pinned)

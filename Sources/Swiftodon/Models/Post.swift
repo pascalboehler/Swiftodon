@@ -45,8 +45,8 @@ public struct Post: Identifiable {
     public var inReplyToAccountID: String?
     
     /// User status
-    public var favourited: Bool?
-    public var reblogged: Bool?
+    public var favourited: Bool
+    public var reblogged: Bool
     public var muted: Bool?
     public var bookmarked: Bool?
     public var pinned: Bool?
