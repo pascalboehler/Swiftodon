@@ -7,17 +7,17 @@
 
 import Foundation
 
-class Instance {
-    var instanceURL: String
-    var isAuthenticated: Bool
+public class Instance {
+    public var instanceURL: String
+    public var isAuthenticated: Bool
     
-    init(instanceURL: String, isAuthenticated: Bool) {
+    public init(instanceURL: String, isAuthenticated: Bool) {
         self.instanceURL = instanceURL
         self.isAuthenticated = isAuthenticated
     }
     
     /// Authenticate device against server to gain access and login user
-    func authenticateDevice() -> Bool {
+    public func authenticateDevice() -> Bool {
         return false
     }
 }
