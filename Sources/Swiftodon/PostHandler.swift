@@ -11,8 +11,8 @@ import Alamofire
 extension Instance {
     @available(iOS 13.0.0, *)
     @available(macOS 10.15, *)
-    public func fetchAllPublicPosts() async throws -> [Post]? {
-        let rawCallURL = "https://\(instanceURL)/api/v1/timelines/public?limit=1"
+    public func fetchAllPublicPosts(amount: Int) async throws -> [Post]? {
+        let rawCallURL = "https://\(instanceURL)/api/v1/timelines/public?limit=\(amount)"
        
         let response = await AF.request(rawCallURL).serializingDecodable([Post].self).response
         let value = response.value

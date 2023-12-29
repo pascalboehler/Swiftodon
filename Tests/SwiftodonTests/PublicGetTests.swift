@@ -12,7 +12,7 @@ final class PublicGetTests: XCTestCase {
     func testPublicGetAll() async throws {
         let myInstance = Instance(instanceURL: "mastodon.social", isAuthenticated: true)
         
-        let publicPostsResponse = try await myInstance.fetchAllPublicPosts()
+        let publicPostsResponse = try await myInstance.fetchAllPublicPosts(amount: 1)
         
         guard let publicPosts = publicPostsResponse else {
             XCTFail("array returned is nil")
