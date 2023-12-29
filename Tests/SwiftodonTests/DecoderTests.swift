@@ -67,6 +67,10 @@ final class DecoderTests: XCTestCase {
         }
         """.data(using: .utf8)!
         
+        let poll = try JSONDecoder().decode(Poll.self, from: testJSON)
+        
+        XCTAssertEqual(poll.id, "34830")
+        
     }
     
     func testFieldDecoding() throws {
